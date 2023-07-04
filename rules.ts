@@ -1,3 +1,5 @@
+import { basicRule, rule } from "./rule";
+
 let fizz = (result: string[], num: number) => {
   if (num % 3 === 0) result.push("Fizz");
   return result;
@@ -35,13 +37,13 @@ let rev = (result: string[], num: number) => {
 function ir(index: number, rule: rule) {
   return { index, rule };
 }
-let rules: Record<string, indexedRule> = {
-  "3": ir(3, fizz),
-  "5": ir(5, buzz),
-  "7": ir(7, bang),
-  "11": ir(11, bong),
-  "13": ir(13, fezz),
-  "17": ir(17, rev),
+let rules: Record<string, rule> = {
+  "3": new basicRule("3=Fizz"),
+  "5": new basicRule("5=Buzz"),
+  "7": new basicRule("7=Bang"),
+  "11": new rule(bong, 11),
+  "13": new rule(fezz, 13),
+  "17": new rule(rev, 17),
 };
 
 export default rules;

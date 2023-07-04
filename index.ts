@@ -1,6 +1,7 @@
 import readline from "readline/promises";
 
 import rules from "./rules";
+import { basicRule, rule } from "./rule";
 
 let terminal = readline.createInterface({
   input: process.stdin,
@@ -9,7 +10,10 @@ let terminal = readline.createInterface({
 
 function fizzBuzz(num: number, rules: rule[]): string {
   //i.e. apply each rule
-  let result = rules.reduce((result: string[], rule) => rule(result, num), []);
+  let result = rules.reduce(
+    (result: string[], rule) => rule.apply(result, num),
+    []
+  );
 
   return result.join("") || num.toString();
 }
@@ -36,25 +40,16 @@ function parseRules(): rule[] {
   return args
     .map((e) => rules[e] || makeRule(e) || false)
     .filter(Boolean)
-    .sort((a, b) => a.index - b.index)
-    .map((e) => e.rule);
+    .sort((a, b) => a.index - b.index);
 }
 
-function makeRule(arg: string): indexedRule | false {
-  if (!arg.includes("=")) return false;
-
-  let [num, replacement] = arg.split("=");
-  let parsedNum = Number(num);
-
-  if (!parsedNum || parsedNum < 1) return false;
-
-  return {
-    index: parsedNum,
-    rule(list, num) {
-      if (num % parsedNum === 0) list.push(replacement);
-      return list;
-    },
-  };
+function makeRule(arg: string): rule | false {
+  try {
+    return new basicRule(arg);
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
 }
 
 main();

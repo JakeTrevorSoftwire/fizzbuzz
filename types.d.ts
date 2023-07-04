@@ -1,3 +1,1 @@
-type rule = (list: string[], num: number) => string[];
-
-type indexedRule = { index: number; rule: rule };
+export type applicator = (list: string[], num: number) => string[];
