@@ -1,3 +1,5 @@
+import { rule, indexedRule } from "./types";
+
 let fizz = (result: string[], num: number) => {
   if (num % 3 === 0) result.push("Fizz");
   return result;
@@ -35,6 +37,7 @@ let rev = (result: string[], num: number) => {
 function ir(index: number, rule: rule) {
   return { index, rule };
 }
+
 let rules: Record<string, indexedRule> = {
   "3": ir(3, fizz),
   "5": ir(5, buzz),

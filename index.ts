@@ -1,6 +1,7 @@
 import readline from "readline/promises";
 
 import rules from "./rules";
+import { indexedRule, rule } from "./types";
 
 let terminal = readline.createInterface({
   input: process.stdin,
