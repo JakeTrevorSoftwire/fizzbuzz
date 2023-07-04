@@ -2,14 +2,15 @@
   "name": "fizzbuzz",
   "version": "1.0.0",
   "description": "Simple FizzBuzz",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start" : "ts-node index.ts",
+    "start": "ts-node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^20.3.3",
     "typescript": "^5.1.6"
   },
   "dependencies": {
